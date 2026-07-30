@@ -72,7 +72,7 @@ response = gemini_client.chat.completions.create(
     temperature=0
 )
 judge_verdict = response.choices[0].message.content
-print(f"⚖️ Gemini (gemini-2.5-flash) verdict: {judge_verdict}")
+print(f"⚖️ Gemini (gemini-3.5-flash) verdict: {judge_verdict}")
 
 if judge_verdict.strip().upper().startswith("SATISFIED"):
     satisfied_votes += 1
@@ -80,7 +80,7 @@ if judge_verdict.strip().upper().startswith("SATISFIED"):
 
 # --- JUDGE 3: Groq (Llama) ---
 response = groq_client.chat.completions.create(
-    model="openai/gpt-oss-20b",  # Using a standard Groq model ID
+    model="openai/gpt-oss-120b",  # Using a standard Groq model ID
     messages=[
         {"role": "system", "content": JUDGE_SYSTEM_PROMPT},
         {"role": "user", "content": USER_MESSAGE}
